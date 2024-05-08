@@ -1,0 +1,31 @@
+{
+  "name": "run-as-api",
+  "version": "0.1.0",
+  "description": "Run heavy JavaScript calculations as a REST API.",
+  "author": "Anton Skshidlevsky <meefik@gmail.com>",
+  "license": "ISC",
+  "keywords": [
+    "node.js",
+    "api",
+    "microservices"
+  ],
+  "type": "module",
+  "main": "src/server.js",
+  "bin": "./bin/cli",
+  "scripts": {
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "commander": "^12.0.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^2.1.0",
+    "eslint": "^9.2.0"
+  }
+}

@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+"use strict";
+
+import config from '../src/config.js';
+import server from '../src/server.js';
+import { resolve } from 'node:path';
+import { Command } from 'commander';
+
+const program = new Command();
+
+program
+  .version('0.1.0')
+  .description('Run heavy JavaScript calculations as a REST API.');
+
+program
+  .argument('<path>', 'root directory for API')
+  .option('-p, --port <number>', 'server port', config.port)
+  .option('-l, --host <string>', 'server host e.g. "127.0.0.1"')
+  .option('-k, --api-key <string>', 'API access secret key')
+  .option('-c, --concurrent <number>', 'number of simultaneous workers', config.concurrent)
+  .option('-t, --exec-timeout <number>', 'worker execution timeout in seconds', config.execTimeout)
+  .option('-q, --queue-size <number>', 'queue size limit', config.queueSize)
+  .option('-r, --request-size <number>', 'request size limit in MiB', config.requestSize)
+  .option('--ssh-key <path>', 'path to SSL private key file')
+  .option('--ssh-cert <path>', 'path to SSL certificate file')
+  .option('--ssh-ca <path>', 'path to SSL CA file')
+  .parse();
+
+server({ ...program.opts(), rootDir: resolve(program.args[0]) });
